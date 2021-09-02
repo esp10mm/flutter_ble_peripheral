@@ -11,7 +11,7 @@ import CoreLocation
 
 class Peripheral : NSObject, CBPeripheralManagerDelegate {
     
-    let peripheralManager = CBPeripheralManager()
+    lazy var peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
     var peripheralData: NSDictionary!
     var onAdvertisingStateChanged: ((Bool) -> Void)?
     var dataToBeAdvertised: [String: [CBUUID]]!
@@ -19,9 +19,6 @@ class Peripheral : NSObject, CBPeripheralManagerDelegate {
     
     override init() {
         super.init()
-        peripheralManager.delegate = self
-        // peripheralManager.queue = nil
-        // = CBPeripheralManager(delegate: self, queue: nil)
     }
     
     func start(advertiseData: AdvertiseData) {
