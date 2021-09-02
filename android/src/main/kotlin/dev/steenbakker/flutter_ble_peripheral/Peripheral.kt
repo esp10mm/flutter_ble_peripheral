@@ -70,7 +70,9 @@ class Peripheral {
         if (bluetoothAdapter == null) {
             Log.e(tag, "This device does not support bluetooth LE")
         } else {
-            mBluetoothLeAdvertiser = bluetoothAdapter.bluetoothLeAdvertiser
+            if (bluetoothAdapter.bluetoothLeAdvertiser != null ){
+                mBluetoothLeAdvertiser = bluetoothAdapter.bluetoothLeAdvertiser
+            }
         }
     }
 
