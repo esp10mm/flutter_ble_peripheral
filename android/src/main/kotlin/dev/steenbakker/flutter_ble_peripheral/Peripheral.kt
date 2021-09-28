@@ -77,6 +77,10 @@ class Peripheral {
     }
 
     fun start(data: Data, settings: AdvertiseSettings, advertiseCallback: ((Boolean) -> Unit) ) {
+        if (this::mBluetoothLeAdvertiser.isInitialized != true) {
+            this.init()
+        }
+
         this.advertiseCallback = advertiseCallback
         mBluetoothLeAdvertiser.startAdvertising(settings, buildAdvertiseData(data), mAdvertiseCallback)
     }
